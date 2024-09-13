@@ -33,7 +33,7 @@ function VideoCarousel() {
 
     gsap.to("#video", {
       scrollTrigger: {
-        trigger: "video",
+        trigger: "#video",
         toggleActions: "restart none none none",
       },
       onComplete: () => {
@@ -46,6 +46,7 @@ function VideoCarousel() {
     })
   }, [isEnd, videoId])
 
+  // playing of the video when startPlay, videodId and isPlaying changes
   useEffect(() => {
     if(loadedData.length > 3){
       if(!isPlaying){
@@ -60,6 +61,7 @@ function VideoCarousel() {
     pre) => [...pre, e]
   )
  
+  // play the video when id and startPlay changes
   useEffect(() => {
     let currentProgress = 0;
     let span = videoSpanRef.current;
@@ -175,7 +177,7 @@ function VideoCarousel() {
                  <source src={list.video} type="video/mp4" />
                 </video>
               </div>
-              <div className="absolute top-12 left-[5%]">
+              <div className="absolute top-12 left-[5%] z-10">
                 {list.textLists.map((text) => {
                   return (
                     <p className="md:text-2xl text-xl font-medium" key={text.id}>{text}</p>
